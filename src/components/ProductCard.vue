@@ -1,9 +1,10 @@
 <template>
   <v-card class="mx-auto" width="320" link @click="goToProductDetailed()">
     <v-img height="200px" :src="product.imageUrl" cover>
+      <v-chip class="ma-2 text-secondary opacity-100">{{ product.type }}</v-chip>
       <template #error>
         <v-img
-          src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fallthatsinteresting.com%2Fwordpress%2Fwp-content%2Fuploads%2F2015%2F06%2Fworst-cars-vega.jpg&f=1&nofb=1&ipt=c9083ff540855f4bb8349d2151fa7c8bb641947a867841b366dee2428b329ac4"
+          :src="errorImageUrl"
           cover
           class="d-flex flex-row align-center justify-center text-center"
         >
@@ -39,11 +40,9 @@
 
 <script setup lang="ts">
 import { useAppStore } from "@/stores/app";
-import { useProductStore } from "@/stores/useProductStore";
 import { currencyFormatter } from "@/tools/formatters";
 import type { Product } from "@/types/product";
 import { useRouter } from "vue-router";
-import Favorite from "./sub-components/Favorite.vue";
 import type { ProductLink } from "@/types/productLink";
 import { usePopup } from "@/composables/usePopup";
 import { ref } from "vue";
@@ -68,12 +67,6 @@ const props = withDefaults(
     productLink: () => ({ productId: 1, count: 1 }), //Fix Error
   },
 );
-
-function removeProduct(product: Product) {
-  useUsers.tryRemoveProductFromCard(product.id as number);
-
-  popup.showMessage(`${product.name} was deleted from your cart`, "info");
-}
 
 const goToProductDetailed = () => {
   router.push({

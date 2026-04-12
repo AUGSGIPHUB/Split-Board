@@ -45,7 +45,7 @@ export const useAppStore = defineStore("app", () => {
     }
   }
 
-  function tryAddProductToCard(productId: number) {
+  function tryAddProductToCard(productId: number, count: number = 1) {
     console.log(currentUser.value?.Card);
 
     if (!checkCurrentUser()) return false;
@@ -57,9 +57,12 @@ export const useAppStore = defineStore("app", () => {
     ) {
       return false;
     } else {
+      if (count < 0) {
+        count = 1;
+      }
       const newProduct: ProductLink = {
         productId: productId,
-        count: 1,
+        count: count,
       };
       //TODO
       if (currentUser.value?.Card === undefined) {

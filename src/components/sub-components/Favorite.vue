@@ -7,7 +7,6 @@
       "
       flat
       icon="mdi-heart-outline"
-      class="mt-2"
       @click.stop="useUsers.tryAddToFavorite(product.id as number)"
     >
     </v-btn>
@@ -15,7 +14,6 @@
       v-else
       flat
       icon="mdi-heart"
-      class="mt-2"
       @click.stop="useUsers.tryRemoveFromFavorite(product.id as number)"
     >
     </v-btn>

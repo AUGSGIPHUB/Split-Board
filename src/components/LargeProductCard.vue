@@ -36,7 +36,11 @@
           </v-card-text>
 
           <v-card-actions class="flex-column align-stretch">
-            <ProductCartButton :product="product" :use-users="useUsers" />
+            <ProductCartButton
+              :product="product"
+              :use-users="useUsers"
+              :in-details="true"
+            />
           </v-card-actions>
         </v-card>
       </v-col>
@@ -56,12 +60,11 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useProductStore } from "@/stores/useProductStore";
 import { useAppStore } from "@/stores/app";
 import { currencyFormatter } from "@/tools/formatters";
-import Favorite from "./sub-components/Favorite.vue";
 import ProductCartButton from "./sub-components/ProductCartButton.vue";
 
 const route = useRoute();
