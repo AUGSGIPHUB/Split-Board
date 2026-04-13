@@ -20,17 +20,40 @@
       <v-col v-for="product in searchedProducts" md="6" lg="4" xl="3">
         <ProductCard :product="product" />
       </v-col>
+      <v-col v-if="searchedProducts.length === 0">
+        <v-card class="mx-auto">
+          <template v-slot:title>
+            <span>There are no matches</span>
+          </template>
+
+          <v-card-text>
+            There are no products available, please change the filters to see the producst.
+          </v-card-text>
+
+          <v-card-actions>
+            <v-btn
+              variant="flat"
+              color="green"
+              @click="resetFilters()"
+              text="Reset filters"
+            />
+          </v-card-actions>
+        </v-card>
+      </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script setup lang="ts">
 import ProductCard from "@/components/ProductCard.vue";
+import { usePopup } from "@/composables/usePopup";
 import { useProductStore } from "@/stores/useProductStore";
 import keyboardType from "@/types/keyboardType";
 import { computed, reactive, ref } from "vue";
 
 const { products, addProduct, removeProductByIndex } = useProductStore();
+
+const popup = usePopup();
 
 const searchType = ref();
 const searchText = ref<string>();
@@ -45,4 +68,9 @@ const searchedProducts = computed(() => {
     // || products.type.toLocaleLowerCase().includes(searchLower),
   );
 });
+
+function resetFilters () {
+  searchText.value = "";
+  popup.showMessage("Filetrs reseted", "info")
+}
 </script>
