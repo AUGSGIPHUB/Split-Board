@@ -18,7 +18,7 @@
             label="description"
             name="description"
             v-model="newProduct.description"
-            :counter="600"
+            :counter="1500"
             required
           ></v-textarea>
 
@@ -185,14 +185,16 @@ function resetForm() {
   newProduct.description = "";
   newProduct.price = 100;
   newProduct.imageUrl = "";
-  newProduct.switch = "";
+  newProduct.switch = keyboardType.Switch[0];
   newProduct.color = keyboardType.Color[0];
   newProduct.size = keyboardType.Size[0];
   newProduct.keycaps = keyboardType.Keycaps[0];
   newProduct.wireless = false;
   newProduct.split = false;
   newProduct.hotswap = true;
-  newProduct.salePrice = 500;
+  if (showSale) {
+    newProduct.salePrice = 500;
+  }
 }
 
 const addProduct = () => {
