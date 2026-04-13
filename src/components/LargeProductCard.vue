@@ -32,7 +32,9 @@
             <v-divider class="my-4"></v-divider>
 
             <h3 class="text-h6 mb-2">Description:</h3>
-            <p class="text-body-1">{{ product.description }}</p>
+            <p class="text-body-1" style="white-space: pre-line">
+              {{ product.description }}
+            </p>
           </v-card-text>
 
           <v-card-actions class="flex-column align-stretch">
