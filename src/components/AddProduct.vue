@@ -53,8 +53,6 @@
             ></v-select>
 
             <v-select
-              :color="newProduct.color.toLocaleLowerCase()"
-              :list-props="{ bgColor: newProduct.color.toLocaleLowerCase() }"
               :items="keyboardType.Color"
               v-model="newProduct.color"
               label="Color"
@@ -206,7 +204,22 @@ const addProduct = () => {
   ) {
     popup.showMessage("Product add Succes", "success");
 
-    product.addProduct(newProduct);
+    const productToAdd: Product = {
+      name: newProduct.name,
+      description: newProduct.description,
+      price: newProduct.price,
+      imageUrl: newProduct.imageUrl,
+      switch: newProduct.switch,
+      color: newProduct.color,
+      size: newProduct.size,
+      keycaps: newProduct.keycaps,
+      wireless: newProduct.wireless,
+      split: newProduct.split,
+      hotswap: newProduct.hotswap,
+      salePrice: newProduct.salePrice,
+    }
+
+    product.addProduct(productToAdd);
 
     resetForm();
   } else {
