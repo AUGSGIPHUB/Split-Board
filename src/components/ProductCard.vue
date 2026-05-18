@@ -15,10 +15,6 @@
           cover
           class="d-flex flex-row align-center justify-center text-center"
         >
-          <v-sheet color="rgba(0,0,0,0.7)" class="pa-2 h-100">
-            <v-icon size="50"> mdi-alert-box </v-icon>
-            <p class="text-h2 font-weight-bold">Image Missing</p>
-          </v-sheet>
         </v-img>
       </template>
     </v-img>
@@ -76,7 +72,7 @@ const useUsers = useAppStore();
 const popup = usePopup();
 
 const errorImageUrl = ref(
-  "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fallthatsinteresting.com%2Fwordpress%2Fwp-content%2Fuploads%2F2015%2F06%2Fworst-cars-vega.jpg&f=1&nofb=1&ipt=c9083ff540855f4bb8349d2151fa7c8bb641947a867841b366dee2428b329ac4",
+  "https://nftcalendar.io/storage/uploads/2022/02/21/image-not-found_0221202211372462137974b6c1a.png"
 );
 
 const props = withDefaults(
