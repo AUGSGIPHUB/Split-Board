@@ -1,13 +1,19 @@
 <template>
-  <v-container>
-    <v-list>
-      <v-list-item title="Login">{{ useUsers.currentUser?.Login }}</v-list-item>
-      <v-list-item title="Name">{{ useUsers.currentUser?.Name }}</v-list-item>
-      <v-list-item title="Number">{{
-        useUsers.currentUser?.Number
-      }}</v-list-item>
-      <v-list-item title="Email">{{ useUsers.currentUser?.Email }}</v-list-item>
-    </v-list>
+  <v-container class="d-flex align-center justify-center">
+    <v-card class="pa-4" width="400">
+      <v-list>
+        <v-list-item title="Login">{{
+          useUsers.currentUser?.Login
+        }}</v-list-item>
+        <v-list-item title="Name">{{ useUsers.currentUser?.Name }}</v-list-item>
+        <v-list-item title="Number">{{
+          useUsers.currentUser?.Number
+        }}</v-list-item>
+        <v-list-item title="Email">{{
+          useUsers.currentUser?.Email
+        }}</v-list-item>
+      </v-list>
+    </v-card>
   </v-container>
 </template>
 

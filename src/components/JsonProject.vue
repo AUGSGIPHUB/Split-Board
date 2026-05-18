@@ -1,69 +1,68 @@
 <template>
-  <v-container>
-    <v-row>
-      <h2 class="text-center">Json data</h2>
-      <v-col md="12">
-        <h3 class="mt-8 mb-1">Load</h3>
-        <div>Use default.json in project directory to load default data</div>
-        <span>Or</span>
-        <div>Load your data from file</div>
+  <v-container class="d-flex align-center justify-center">
+    <v-card width="512" class="pa-4">
+      <h2 class="text-center mt-0">Json data</h2>
+      <h3 class="mt-8 mb-1">Load</h3>
+      <div>Use default.json in project directory to load default data</div>
+      <span>Or</span>
+      <div>Load your data from file</div>
 
-        <div class="d-flex ga-3">
-          <v-file-input
-            density="comfortable"
-            label="Drag and Drop .json here"
-            prepend-icon="mdi-database-import"
-            accept=".json"
-            v-model="Files"
-          ></v-file-input>
-          <v-btn
-            size="large"
-            :disabled="!Files"
-            @click="loadData()"
-            color="info"
-            >Load</v-btn
-          >
-        </div>
+      <div class="d-flex ga-3">
+        <v-file-input
+          density="comfortable"
+          label="Drag and Drop .json here"
+          prepend-icon="mdi-database-import"
+          accept=".json"
+          v-model="Files"
+        ></v-file-input>
+        <v-btn
+          size="large"
+          :disabled="!Files"
+          @click="loadData()"
+          color="info"
+          text="Load"
+        />
+      </div>
 
-        <h3 class="mt-8 mb-1">Save</h3>
-        <v-btn color="green" @click="ExampleDownload()"
-          >Download current data</v-btn
-        >
+      <h3 class="mt-8 mb-1">Download</h3>
+      <v-btn
+        color="green"
+        @click="ExampleDownload()"
+        text="Download current data"
+      />
 
-        <h3 class="mt-8 mb-1">Delete</h3>
+      <h3 class="mt-8 mb-1">Delete</h3>
 
-        <v-dialog max-width="600">
-          <template v-slot:activator="{ props: activatorProps }">
-            <v-btn
-              v-bind="activatorProps"
-              color="error"
-              text="Delete data"
-            ></v-btn>
-          </template>
+      <v-dialog max-width="600">
+        <template v-slot:activator="{ props: activatorProps }">
+          <v-btn v-bind="activatorProps" color="error" text="Delete data" />
+        </template>
 
-          <template v-slot:default="{ isActive }">
-            <v-card title="Are you sure?">
-              <v-card-text>
-                All data after this action will
-                be deleted, and you will not be able to recover it (local
-                storage too).
-                <div class="mt-2">Do you want to delete all data?</div>
-              </v-card-text>
+        <template v-slot:default="{ isActive }">
+          <v-card title="Are you sure?">
+            <v-card-text>
+              All data after this action will be deleted, and you will not be
+              able to recover it (local storage too).
+              <div class="mt-2">Do you want to delete all data?</div>
+            </v-card-text>
 
-              <v-card-actions>
-                <v-spacer></v-spacer>
+            <v-card-actions>
+              <v-spacer></v-spacer>
 
-                <v-btn
-                  text="No"
-                  @click="isActive.value = false"
-                ></v-btn>
-                <v-btn @click="isActive.value = false; deleteAllData()" color="error">Yes, delete</v-btn>
-              </v-card-actions>
-            </v-card>
-          </template>
-        </v-dialog>
-      </v-col>
-    </v-row>
+              <v-btn text="No" @click="isActive.value = false" />
+              <v-btn
+                @click="
+                  isActive.value = false;
+                  deleteAllData();
+                "
+                color="error"
+                text="Yes, delete"
+              />
+            </v-card-actions>
+          </v-card>
+        </template>
+      </v-dialog>
+    </v-card>
   </v-container>
 </template>
 

@@ -1,16 +1,18 @@
 <template>
-  <h2>Users</h2>
-  <v-data-table :headers="headers" :items="useUsers.users">
-    <template v-slot:item.actions="{ item }">
-      <v-btn variant="text" icon @click="edit(item)">
-        <v-icon>mdi-pencil</v-icon>
-      </v-btn>
+  <v-card class="mt-5 pa-4">
+    <h2 class="mt-0">Users</h2>
+    <v-data-table :headers="headers" :items="useUsers.users">
+      <template v-slot:item.actions="{ item }">
+        <v-btn variant="text" icon @click="edit(item)">
+          <v-icon>mdi-pencil</v-icon>
+        </v-btn>
 
-      <v-btn variant="text" icon @click="remove(item.id as any)">
-        <v-icon>mdi-delete</v-icon>
-      </v-btn>
-    </template>
-  </v-data-table>
+        <v-btn variant="text" icon @click="remove(item.id as any)">
+          <v-icon>mdi-delete</v-icon>
+        </v-btn>
+      </template>
+    </v-data-table>
+  </v-card>
 
   <v-dialog v-model="dialog" max-width="500">
     <v-card>
@@ -37,7 +39,11 @@
           type="email"
         ></v-text-field>
 
-        <v-switch label="Admin" v-model="editedUser.admin" color="red-darken-4"></v-switch>
+        <v-switch
+          label="Admin"
+          v-model="editedUser.admin"
+          color="red-darken-4"
+        ></v-switch>
       </v-card-text>
 
       <v-card-actions>
@@ -62,7 +68,7 @@ const currentEdit = ref();
 
 const useUsers = useAppStore();
 
-const headers = [ 
+const headers = [
   { title: "Name", value: "Name" },
   { title: "Login", value: "Login" },
   { title: "Phone", value: "Number" },
@@ -84,7 +90,7 @@ const editedUser = ref({
   password: "",
   admin: false,
   likes: [] as number[],
-  card: [] as ProductLink[]
+  card: [] as ProductLink[],
 });
 
 const selectedId = ref<number | null>(null);
@@ -101,7 +107,7 @@ function edit(item: User) {
     password: item.PasswordHash,
     admin: item.Admin ?? false,
     likes: item.Likes ?? [],
-    card: item.Card ?? []
+    card: item.Card ?? [],
   };
   dialog.value = true;
 }

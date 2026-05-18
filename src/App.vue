@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-main>
-      <v-app-bar title="CarStation">
+      <v-app-bar title="Split Key">
         <v-btn
           prepend-icon="mdi-home"
           :to="{ name: 'home' }"

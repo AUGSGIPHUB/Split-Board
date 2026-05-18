@@ -18,7 +18,6 @@
         @click="order()"
         color="green"
         variant="elevated"
-        prepend-icon="mdi-gas-station"
         >Order</v-btn
       >
     </div>

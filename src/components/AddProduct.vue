@@ -76,6 +76,7 @@
           <div class="ga-6 d-flex flex-wrap">
             <v-chip size="large">
               <v-switch
+                color="primary"
                 class="pt-5"
                 label="Split"
                 v-model="newProduct.split"
@@ -83,6 +84,7 @@
             </v-chip>
             <v-chip size="large">
               <v-switch
+                color="primary"
                 class="pt-5"
                 label="HotSwap"
                 v-model="newProduct.hotswap"
@@ -90,6 +92,7 @@
             </v-chip>
             <v-chip size="large">
               <v-switch
+                color="primary"
                 class="pt-5"
                 :label="wireless"
                 v-model="newProduct.wireless"
@@ -98,6 +101,7 @@
           </div>
           <v-card class="mt-3 pa-3">
             <v-switch
+              color="primary"
               @click="toggleSale()"
               label="Sale"
               v-model="showSale"

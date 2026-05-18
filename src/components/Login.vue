@@ -1,32 +1,35 @@
 <template>
-  <h2>Login</h2>
-
-  <v-form @submit.prevent name="login-form">
-    <v-text-field
-      name="login"
-      :counter="42"
-      label="Login"
-      v-model="loginVariables.login"
-      autocomplete="username"
-      required
-    />
-    <v-text-field
-      name="password"
-      type="password"
-      label="Password"
-      v-model="loginVariables.password"
-      autocomplete="current-password"
-      required
-    />
-    <v-btn
-      prepend-icon="mdi-login"
-      @click="tryLogin"
-      type="submit"
-      size="large"
-      color="success"
-      >Sign in</v-btn
-    >
-  </v-form>
+  <v-container class="d-flex align-center justify-center">
+    <v-card class="pa-4" width="400">
+      <h2 class="mt-0">Login</h2>
+      <v-form @submit.prevent name="login-form">
+        <v-text-field
+          name="login"
+          :counter="42"
+          label="Login"
+          v-model="loginVariables.login"
+          autocomplete="username"
+          required
+        />
+        <v-text-field
+          name="password"
+          type="password"
+          label="Password"
+          v-model="loginVariables.password"
+          autocomplete="current-password"
+          required
+        />
+        <v-btn
+          prepend-icon="mdi-login"
+          @click="tryLogin"
+          type="submit"
+          size="large"
+          color="success"
+          >Sign in</v-btn
+        >
+      </v-form>
+    </v-card>
+  </v-container>
 </template>
 
 <script setup lang="ts">
