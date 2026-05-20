@@ -77,6 +77,8 @@
         multiple
         chips
       ></v-select>
+      <v-select label="Price" v-model="searchPrice" :items="['Low to High', 'High to Low']">
+      </v-select>
     </v-card>
     <v-row>
       <v-col v-for="product in searchedProducts" md="6" lg="4" xl="3">
@@ -129,6 +131,8 @@ const searchTypes = reactive({
   hotswap: [],
   split: [],
 });
+
+const searchPrice = ref<string>("Low to High");
 const searchText = ref<string>();
 
 const matchesFilters = (product: Product): boolean => {
@@ -194,7 +198,17 @@ const matchesFilters = (product: Product): boolean => {
   );
 };
 
-const searchedProducts = computed(() => products.filter(matchesFilters));
+function sortByPrice(products:Product[], invert: string) {
+  if (invert === "Low to High") {
+    products.sort((a, b) => a.price - b.price);
+  } else {
+    products.sort((a, b) => b.price - a.price);
+  }
+
+  return products;
+}
+
+const searchedProducts = computed(() => sortByPrice(products.filter(matchesFilters), searchPrice.value as string));
 
 function resetFilters() {
   searchText.value = "";
