@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mt-5 pa-4">
+  <v-card max-width="90vw" class="mt-5 pa-4">
     <h2 class="mt-0">Users</h2>
     <v-data-table :headers="headers" :items="useUsers.users">
       <template v-slot:item.actions="{ item }">
@@ -37,6 +37,12 @@
           v-model="editedUser.email"
           label="Email"
           type="email"
+        ></v-text-field>
+
+        <v-text-field
+          v-model="editedUser.password"
+          label="Password"
+          type="text"
         ></v-text-field>
 
         <v-switch
