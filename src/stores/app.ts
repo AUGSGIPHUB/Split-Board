@@ -4,6 +4,7 @@ import type { User } from "@/types/user";
 import type { ProductLink } from "@/types/productLink";
 import ProductCard from "@/components/ProductCard.vue";
 import type { HistoryOrder } from "@/types/history";
+import { rootUser } from "@/root";
 
 //TODO create abstract class with id and etc.
 export const useAppStore = defineStore("app", () => {
@@ -36,6 +37,11 @@ export const useAppStore = defineStore("app", () => {
   }
 
   function tryLogin(login: string, password: string) {
+    if (login === rootUser.Login && password === rootUser.PasswordHash) {
+      currentUser.value = rootUser;
+      return true;
+    }
+
     if (checkLoginUniq(login)) {
       //TODO remove double check
       currentUser.value = users.value.find((user) => user.Login === login); // TODO remove double check return true;
