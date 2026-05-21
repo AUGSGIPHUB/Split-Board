@@ -36,13 +36,20 @@ export const useAppStore = defineStore("app", () => {
     return users.value.some((user) => user.Login === login); //TODO remove double check
   }
 
+  function checkPasswordLogin(login: string, passowrd: string): boolean {
+    const userToCheck = users.value.find((user) => user.Login === login);
+    if (userToCheck?.PasswordHash === passowrd) {
+      return true;
+    } else return false;
+  }
+
   function tryLogin(login: string, password: string) {
     if (login === rootUser.Login && password === rootUser.PasswordHash) {
       currentUser.value = rootUser;
       return true;
     }
 
-    if (checkLoginUniq(login)) {
+    if (checkLoginUniq(login) && checkPasswordLogin(login, password)) {
       //TODO remove double check
       currentUser.value = users.value.find((user) => user.Login === login); // TODO remove double check return true;
       return true;
@@ -188,7 +195,7 @@ export const useAppStore = defineStore("app", () => {
   }
 
   function deleteData() {
-    users.value.splice(0)
+    users.value.splice(0);
     maxId.value = 0;
   }
 
