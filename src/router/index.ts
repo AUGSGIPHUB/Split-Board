@@ -13,7 +13,6 @@ import LargeProductCard from "@/components/LargeProductCard.vue";
 import UserAccount from "@/components/UserAccount.vue";
 import UserShopCard from "@/components/UserShopCard.vue";
 import JsonProject from "@/components/JsonProject.vue";
-import { useAppStore } from "@/stores/app";
 import UserFavorite from "@/components/UserFavorite.vue";
 import Error404 from "@/pages/error404.vue";
 
@@ -49,32 +48,6 @@ const router = createRouter({
     {
       path: "/account",
       component: Account,
-      beforeEnter: (to, from, next) => {
-        const useUsers = useAppStore();
-        const isLoggedIn = useUsers.checkCurrentUser();
-
-        // Other -> login without account (YES)
-        // Other -> login with User (NO)
-
-        if (to.name === "login" && !isLoggedIn) {
-          next();
-        } else if (to.name === "login" && isLoggedIn) {
-          // const lastPage: string = useUsers.getLastPage();
-
-          // if (lastPage) {
-
-          // }
-          next({
-            name: "user-cart",
-            params: { login: useUsers.currentUser?.Login },
-          });
-        } else {
-          console.warn(
-            "TO: " + to.name?.toString() + "\nFrom: " + from.name?.toString(),
-          );
-          next();
-        }
-      },
       children: [
         { path: "createUser", component: Registration, name: "registration" },
         { path: "login", component: Login, name: "login" },
@@ -102,6 +75,7 @@ const router = createRouter({
       path: "/adminka",
       component: Adminka,
       name: "adminka",
+      meta: { requiresAuth: true },
       children: [
         { path: "addProduct", component: AddProduct, name: "addProduct" },
         { path: "editProducts", component: EditProducts, name: "editProducts" },
@@ -117,12 +91,13 @@ const router = createRouter({
   ],
 });
 
-router.beforeEach((to, from, next) => {
-  const requeresAuth = to.meta.requeresAuth;
-  console.log(from.name);
-  console.log(to.name);
-  if (requeresAuth && noUser) {
-    next("/login");
+router.beforeEach(async (to, from, next) => {
+  const requiresAuth = to.meta.requiresAuth;
+
+  const { useAppStore } = await import("@/stores/app");
+  const usersStore = useAppStore();
+  if (requiresAuth && usersStore.checkCurrentUser() === false) {
+    next({name: "login"});
   } else {
     next();
   }
