@@ -43,8 +43,18 @@ const router = createRouter({
       path: "/account",
       component: Account,
       children: [
-        { path: "createUser", component: Registration, name: "registration" },
-        { path: "login", component: Login, name: "login" },
+        {
+          path: "createUser",
+          component: Registration,
+          name: "registration",
+          meta: { requiresUnsign: true },
+        },
+        {
+          path: "login",
+          component: Login,
+          name: "login",
+          meta: { requiresUnsign: true },
+        },
         {
           path: "/user/:login",
           component: UserAccount,
@@ -88,12 +98,21 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   const requiresAuth = to.meta.requiresAuth;
   const requiresAdmin = to.meta.requiresAdmin;
+  const requiresUnsign = to.meta.requiresUnsign;
 
   const { useAppStore } = await import("@/stores/app");
   const usersStore = useAppStore();
 
   if (requiresAuth && !usersStore.checkCurrentUser()) {
     next({ name: "login" });
+    return;
+  }
+
+  if (requiresUnsign && usersStore.checkCurrentUser()) {
+    next({
+      name: "user-account",
+      params: { login: usersStore.currentUser?.Login },
+    });
     return;
   }
 
