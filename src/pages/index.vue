@@ -1,73 +1,188 @@
 <template>
-  <v-container fluid class="pa-0">
-    <v-img
-      src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.carexpert.com.au%2Fresize%2F3000%2F-%2Fapp%2Fuploads%2F2023%2F04%2Fmini-hatch-1.jpg&f=1&nofb=1&ipt=09934e4f09314a625f11a7407eedded721623a973c6e012847715d28f92df172"
-      height="500"
-      cover
-      class="align-center"
-    >
-      <v-row justify="center" class="ma-0">
-        <v-col cols="12" md="8" class="text-center white--text">
-          <v-sheet color="rgba(0,0,0,0.6)" class="pa-10 rounded-lg">
-            <h1 class="text-h2 font-weight-bold mb-4">Buy your favorite car</h1>
-            <p class="text-h6 mb-6">Just buy it, please</p>
+  <v-img
+    src="https://i.rtings.com/assets/pages/ifvcOk4a/best-mechanical-keyboards-20260114-medium.jpg?format=auto"
+    height="600"
+    cover
+    class="align-center"
+  >
+    <v-container class="fill-height">
+      <v-row align="center" justify="center" class="fill-height">
+        <v-col cols="12" md="8" class="text-center">
+          <v-sheet color="#FFFFFFE0" class="pa-10 rounded-lg">
+            <h1 class="text-h2 font-weight-bold mb-4">
+              Discover Your Perfect Keyboard
+            </h1>
+            <p class="text-h6 mb-6">
+              Mechanical, ergonomic, split – we have it all
+            </p>
             <v-btn
               :to="{ name: 'catalog' }"
               color="orange-darken-2"
               size="large"
               variant="elevated"
             >
-              Go to catalog
+              Shop Now
             </v-btn>
           </v-sheet>
         </v-col>
       </v-row>
-    </v-img>
-  </v-container>
+    </v-container>
+  </v-img>
 
   <v-container class="my-12">
     <v-row align="center">
       <v-col cols="12" md="6">
         <v-img
-          src="https://hips.hearstapps.com/hmg-prod/images/a5835f7b-d514-4f3c-b826-5fa617a855d4.jpg?crop=0.827xw:0.826xh;0.105xw,0.174xh&resize=980:*"
+          src="https://ae01.alicdn.com/kf/S042602697a484f8faea8530463382f7fw.jpg"
           rounded="lg"
           elevation="4"
-        ></v-img>
+          aspect-ratio="1"
+        />
       </v-col>
-
-      <!-- TODO use id of product for generic sale-->
       <v-col cols="12" md="6">
-        <v-chip color="red" text-color="white" class="mb-4">HOT OFFER</v-chip>
-        <h2 class="text-h3 mb-4">AUDI 2026!</h2>
+        <v-chip color="red" text-color="white" class="mb-4" label>
+          HOT OFFER
+        </v-chip>
+        <h2 class="text-h3 mb-4">CORNE V4 Split Keyboard</h2>
         <p class="text-body-1 mb-6">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit
-          magnam aliquam dolorem quisquam voluptas reprehenderit ipsum nam
-          doloremque cum repellat aliquid, dicta voluptatibus harum aperiam
-          vitae eligendi ab iure optio?
+          Super mega smart split keyboard for everyone. A-COIN battery
+          hollow-out/Filled version: battery not included should prepare extra,
+          because the Coin batteries are usually not accepted by express
+          packages.
         </p>
-
         <div class="d-flex align-center mb-6">
-          <span class="text-h4 font-weight-bold text-red mr-4">{{
-            currencyFormatter.format(23999)
-          }}</span>
-          <span class="text-h5 text-decoration-line-through text-grey">{{
-            currencyFormatter.format(39999)
-          }}</span>
+          <span class="text-h4 font-weight-bold text-red mr-4">
+            {{ currencyFormatter.format(60) }}
+          </span>
+          <span class="text-h5 text-decoration-line-through text-grey">
+            {{ currencyFormatter.format(70) }}
+          </span>
         </div>
-
         <v-btn
-          to="/product/7"
+          :to="{ name: 'product-detail', params: { id: 13 } }"
           color="primary"
           size="x-large"
           prepend-icon="mdi-cart"
         >
-          Buy now
+          Buy Now
         </v-btn>
+      </v-col>
+    </v-row>
+  </v-container>
+
+  <!-- <v-container class="my-12">
+    <h2 class="text-h3 text-center mb-8">Why Choose Us?</h2>
+    <v-row>
+      <v-col v-for="benefit in benefits" :key="benefit.title" cols="12" md="4">
+        <v-card variant="flat" class="text-center pa-6" elevation="0">
+          <v-icon :icon="benefit.icon" size="48" color="primary" class="mb-4" />
+          <h3 class="text-h5 font-weight-bold mb-2">{{ benefit.title }}</h3>
+          <p class="text-body-1 text-grey">{{ benefit.text }}</p>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container> -->
+
+  <v-img
+    src="https://i.rtings.com/assets/pages/LJ8QxpyZ/best-wireless-keyboards-20260120-medium.jpg?format=auto"
+    height="400"
+    cover
+    class="align-center"
+  >
+    <v-container class="fill-height">
+      <v-row align="center" justify="center" class="fill-height">
+        <v-col cols="12" md="8" class="text-center">
+          <v-sheet color="#FFFFFFE0" class="pa-8 rounded-lg">
+            <h2 class="text-h3 font-weight-bold mb-3">Simplify Your Life</h2>
+            <p class="text-h6 mb-5">
+              Wireless, silent, and ultra-durable – upgrade your setup today
+            </p>
+            <v-btn
+              :to="{ name: 'catalog' }"
+              color="orange-darken-2"
+              size="large"
+              variant="elevated"
+            >
+              Explore Collection
+            </v-btn>
+          </v-sheet>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-img>
+
+  <v-container class="my-12">
+    <v-row justify="center">
+      <v-col cols="12" md="8" lg="6">
+        <v-card
+          variant="flat"
+          class="pa-6 text-center"
+          color="grey-lighten-4"
+          rounded="xl"
+        >
+          <h2 class="text-h4 mb-2">Stay in Touch</h2>
+          <p class="text-body-1 mb-6">
+            Get exclusive offers and new releases first
+          </p>
+          <v-form @submit.prevent="subscribe">
+            <v-row>
+              <v-col cols="12" sm="8">
+                <v-text-field
+                  v-model="email"
+                  label="Email address"
+                  type="email"
+                  variant="outlined"
+                  hide-details
+                  required
+                />
+              </v-col>
+              <v-col cols="12" sm="4">
+                <v-btn type="submit" color="primary" block size="large"
+                  >Subscribe</v-btn
+                >
+              </v-col>
+            </v-row>
+          </v-form>
+        </v-card>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script lang="ts" setup>
+import { ref } from "vue";
 import { currencyFormatter } from "@/tools/formatters";
+import { usePopup } from "@/composables/usePopup";
+
+const email = ref<string>("");
+const popup = usePopup();
+
+const subscribe = () => {
+  if (email.value) {
+    popup.showMessage("Thank you!", "success");
+    email.value = "";
+  }
+};
+
+const benefits = [
+  {
+    icon: "mdi-keyboard",
+    title: "Premium Quality",
+    text: "Only authentic switches and durable materials for years of typing comfort.",
+  },
+  {
+    icon: "mdi-truck-fast",
+    title: "Fast Shipping",
+    text: "Free express delivery on orders over $50. Worldwide shipping available.",
+  },
+  {
+    icon: "mdi-shield-check",
+    title: "2-Year Warranty",
+    text: "All keyboards come with a hassle-free warranty and 30-day returns.",
+  },
+];
 </script>
+
+<style scoped>
+/* Можно добавить минимальные правки, если нужно */
+</style>
