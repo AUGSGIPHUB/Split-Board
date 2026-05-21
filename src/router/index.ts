@@ -38,12 +38,6 @@ const router = createRouter({
       path: "/product/:id",
       component: LargeProductCard,
       name: "product-detail",
-      // beforeEnter: (to) => {
-      //   const id = Number(to.params.id);
-      //   if (isNaN(id)) {
-      //     return { name: 'catalog' }; //TODO 404
-      //   }
-      // }
     },
     {
       path: "/account",
