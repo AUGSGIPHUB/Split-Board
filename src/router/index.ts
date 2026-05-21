@@ -102,13 +102,14 @@ router.beforeEach(async (to, from, next) => {
 
   const { useAppStore } = await import("@/stores/app");
   const usersStore = useAppStore();
+  const isLoggedIn = usersStore.checkCurrentUser();
 
-  if (requiresAuth && !usersStore.checkCurrentUser()) {
+  if (requiresAuth && !isLoggedIn) {
     next({ name: "login" });
     return;
   }
 
-  if (requiresUnsign && usersStore.checkCurrentUser()) {
+  if (requiresUnsign && isLoggedIn) {
     next({
       name: "user-account",
       params: { login: usersStore.currentUser?.Login },
