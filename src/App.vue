@@ -27,6 +27,7 @@
           >Account ({{ useUsers.currentUser?.Login }})</v-btn
         >
         <v-btn
+          v-if="useUsers.currentUser?.Admin"
           prepend-icon="mdi-security"
           :to="{ name: 'adminka' }"
           text="Adminka"
@@ -37,7 +38,7 @@
     </v-main>
     <v-footer
       class="d-flex align-center justify-center flex-wrap flex-grow-1 py-3"
-      style="max-height: 80px;"
+      style="max-height: 80px"
     >
       <div class="flex-1-0-100 text-center mt-2">by Rose</div>
     </v-footer>
