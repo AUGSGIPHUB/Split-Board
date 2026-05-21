@@ -69,7 +69,7 @@ const router = createRouter({
       path: "/adminka",
       component: Adminka,
       name: "adminka",
-      meta: { requiresAuth: true },
+      meta: { requiresAuth: true, requiresAdmin: true },
       children: [
         { path: "addProduct", component: AddProduct, name: "addProduct" },
         { path: "editProducts", component: EditProducts, name: "editProducts" },
@@ -87,14 +87,22 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   const requiresAuth = to.meta.requiresAuth;
+  const requiresAdmin = to.meta.requiresAdmin;
 
   const { useAppStore } = await import("@/stores/app");
   const usersStore = useAppStore();
-  if (requiresAuth && usersStore.checkCurrentUser() === false) {
-    next({name: "login"});
-  } else {
-    next();
+
+  if (requiresAuth && !usersStore.checkCurrentUser()) {
+    next({ name: "login" });
+    return;
   }
+
+  if (requiresAdmin && !usersStore.currentUser?.Admin) {
+    next({ name: "home" });
+    return;
+  }
+
+  next();
 });
 
 export default router;
