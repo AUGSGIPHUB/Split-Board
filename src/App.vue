@@ -126,7 +126,7 @@ const products = useProductStore();
 const popup = usePopup();
 
 onMounted(async () => {
-  const response = await fetch("/default.json");
+  const response = await fetch(`${import.meta.env.BASE_URL}default.json`);
   if (!response.ok) throw new Error("default.json not found");
 
   const data = await response.json();
