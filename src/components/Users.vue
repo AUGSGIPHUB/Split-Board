@@ -68,6 +68,7 @@ import { useAppStore } from "@/stores/app";
 import { ref } from "vue";
 import type { User } from "@/types/user";
 import type { ProductLink } from "@/types/productLink";
+import router from "@/router";
 
 const dialog = ref(false);
 const currentEdit = ref();
@@ -137,6 +138,10 @@ function save() {
 
 function deleteUser(id: number) {
   if (confirm("Are you sure you want to delete this user?")) {
+    if (id === useUsers.currentUser?.id) {
+      useUsers.logout();
+      router.push({ name: "login" });
+    }
     useUsers.deleteUserById(id);
   }
 }
