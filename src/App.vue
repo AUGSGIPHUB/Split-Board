@@ -101,7 +101,7 @@
         <v-btn
           variant="text"
           icon="mdi-github"
-          href="https://github.com/AUGSGIPHUB/split-keyboard-shop"
+          href="https://github.com/AUGSGIPHUB/Split-Board"
           target="_blank"
           rel="noopener noreferrer"
         >
