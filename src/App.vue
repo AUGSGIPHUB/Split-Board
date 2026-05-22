@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar :title="'Split Key'">
+    <v-app-bar :title="'Split Board'">
       <v-app-bar-nav-icon
         @click.stop="drawer = !drawer"
         class="d-md-none"
