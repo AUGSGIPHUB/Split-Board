@@ -3,11 +3,11 @@
     <h2 class="mt-0">Users</h2>
     <v-data-table :headers="headers" :items="useUsers.users">
       <template v-slot:item.actions="{ item }">
-        <v-btn variant="text" icon @click="edit(item)">
+        <v-btn variant="text" icon @click="editUser(item)">
           <v-icon>mdi-pencil</v-icon>
         </v-btn>
 
-        <v-btn variant="text" icon @click="remove(item.id as any)">
+        <v-btn variant="text" icon @click="deleteUser(item.id as any)">
           <v-icon>mdi-delete</v-icon>
         </v-btn>
       </template>
@@ -101,7 +101,7 @@ const editedUser = ref({
 
 const selectedId = ref<number | null>(null);
 
-function edit(item: User) {
+function editUser(item: User) {
   currentEdit.value = item;
   selectedId.value = item.id || null;
   editedUser.value = {
@@ -135,7 +135,7 @@ function save() {
   dialog.value = false;
 }
 
-function remove(id: number) {
+function deleteUser(id: number) {
   if (confirm("Are you sure you want to delete this user?")) {
     useUsers.deleteUserById(id);
   }
